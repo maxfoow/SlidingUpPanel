@@ -30,24 +30,29 @@ namespace Sample
             layout.PanelExpanded += (s, e) => Log.Info(Tag, "PanelExpanded");
             layout.PanelCollapsed += (s, e) => Log.Info(Tag, "PanelCollapsed");
             layout.PanelAnchored += (s, e) => Log.Info(Tag, "PanelAnchored");
-            layout.PanelSlide += (s, e) =>
-            {
-                if (e.SlideOffset < 0.2)
-                {
-                    if (SupportActionBar.IsShowing)
-                        SupportActionBar.Hide();
-                }
-                else
-                {
-                    if (!SupportActionBar.IsShowing)
-                        SupportActionBar.Show();
-                }
-            };
+            //layout.PanelSlide += (s, e) =>
+            //{
+            //    if (e.SlideOffset < 0.2)
+            //    {
+            //        if (SupportActionBar.IsShowing)
+            //            SupportActionBar.Hide();
+            //    }
+            //    else
+            //    {
+            //        if (!SupportActionBar.IsShowing)
+            //            SupportActionBar.Show();
+            //    }
+            //};
 
             var actionBarHidden = savedInstanceState != null &&
                                   savedInstanceState.GetBoolean(SavedStateActionBarHidden, false);
             if (actionBarHidden)
                 SupportActionBar.Hide();
+
+	        var btnHide = FindViewById<Button>(Resource.Id.btnHide);
+	        btnHide.Click += (sender, args) => {
+		        layout.SlideState = layout.SlideState == SlideState.Hidden ? SlideState.Collapsed : SlideState.Hidden;
+	        };
         }
 
         protected override void OnSaveInstanceState(Bundle outState)

@@ -3,7 +3,8 @@ namespace Cheesebaron.SlidingUpPanel
     public enum SlideState
     {
         Expanded = 0,
-        Collapsed,
-        Anchored
+        Collapsed = 1,
+        Anchored = 2,
+		Hidden = 3
     }
 }
