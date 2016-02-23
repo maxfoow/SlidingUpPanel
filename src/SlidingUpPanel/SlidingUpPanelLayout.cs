@@ -379,6 +379,9 @@ namespace Cheesebaron.SlidingUpPanel {
 					childHeightSpec = MeasureSpec.MakeMeasureSpec(lp.Height, MeasureSpecMode.Exactly);
 
 				child.Measure(childWidthSpec, childHeightSpec);
+				if (child == _slideableView) {
+					_slideRange = child.MeasuredHeight - _panelHeight;
+				}
 			}
 			SetMeasuredDimension(widthSize, heightSize);
 		}
@@ -411,8 +414,8 @@ namespace Cheesebaron.SlidingUpPanel {
 				var lp = (LayoutParams) child.LayoutParameters;
 				var childHeight = child.MeasuredHeight;
 
-				if (lp.Slideable)
-					_slideRange = childHeight - _panelHeight;
+				//if (lp.Slideable)
+				//	_slideRange = childHeight - _panelHeight;
 
 				int childTop;
 				if (_isSlidingUp)
